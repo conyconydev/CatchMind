@@ -30,6 +30,10 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
     
     //MARK: IBOutlet
     @IBOutlet weak var selectImageView: UIImageView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var confidenceLabel: UILabel!
+    
+    
     
     //MARK: IBAction
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
@@ -67,8 +71,34 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[.editedImage] as? UIImage{
-            self.selectImageView.image = editedImage
             picker.dismiss(animated: true)
+            self.selectedImage = editedImage
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.detectObjcet()
+            }
+        }
+    }
+    
+    func detectObjcet() {
+        if let ciImage = self.selectedciImage {
+            do {
+                let vnCoreMLModel = try VNCoreMLModel(for: Inceptionv3().model)
+                
+                let request = VNCoreMLRequest(model: vnCoreMLModel, completionHandler: self.handleObjectDetection)
+                request.imageCropAndScaleOption = .centerCrop
+                
+                let requestHandler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+                try requestHandler.perform([request])
+            }catch {
+                print(error)
+            }
+        }
+    }
+    
+    func handleObjectDetection(request: VNRequest, error: Error?) {
+        if let result = request.results?.first as? VNClassificationObservation {
+            self.categoryLabel.text = result.identifier
+            self.confidenceLabel.text = "\(String(format: "%.1f", result.confidence*100))%"
         }
     }
     
@@ -77,6 +107,8 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.categoryLabel.text = ""
+        self.confidenceLabel.text = ""
     }
     
     

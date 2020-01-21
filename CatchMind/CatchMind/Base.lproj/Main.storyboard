@@ -126,19 +126,29 @@
                                     <constraint firstAttribute="width" secondItem="vGG-zj-L6h" secondAttribute="height" id="SaH-ac-hTp"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-8O-5H9">
-                                <rect key="frame" x="175" y="617" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLe-qf-Rn2">
+                                <rect key="frame" x="186" y="828.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-8O-5H9">
+                                <rect key="frame" x="24" y="764.5" width="366" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="zuy-pE-ygM" firstAttribute="trailing" secondItem="1ne-8O-5H9" secondAttribute="trailing" constant="24" id="0x2-jB-Ob1"/>
+                            <constraint firstItem="CLe-qf-Rn2" firstAttribute="centerX" secondItem="zuy-pE-ygM" secondAttribute="centerX" id="Hdz-UC-fmp"/>
+                            <constraint firstItem="zuy-pE-ygM" firstAttribute="bottom" secondItem="CLe-qf-Rn2" secondAttribute="bottom" constant="13" id="Mc6-MM-7O1"/>
                             <constraint firstItem="vGG-zj-L6h" firstAttribute="top" secondItem="zuy-pE-ygM" secondAttribute="top" id="Pn4-kY-8Pj"/>
                             <constraint firstItem="vGG-zj-L6h" firstAttribute="leading" secondItem="zuy-pE-ygM" secondAttribute="leading" id="QeD-Xr-sFy"/>
+                            <constraint firstItem="1ne-8O-5H9" firstAttribute="leading" secondItem="zuy-pE-ygM" secondAttribute="leading" constant="24" id="fdx-9H-I4Z"/>
                             <constraint firstItem="zuy-pE-ygM" firstAttribute="trailing" secondItem="vGG-zj-L6h" secondAttribute="trailing" id="mee-UP-EHr"/>
+                            <constraint firstItem="CLe-qf-Rn2" firstAttribute="top" secondItem="1ne-8O-5H9" secondAttribute="bottom" constant="40" id="t07-I0-fvP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zuy-pE-ygM"/>
                     </view>
@@ -150,6 +160,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoryLabel" destination="1ne-8O-5H9" id="RjB-qZ-Q2S"/>
+                        <outlet property="confidenceLabel" destination="CLe-qf-Rn2" id="2gb-py-zNm"/>
                         <outlet property="selectImageView" destination="vGG-zj-L6h" id="JaF-PI-uvl"/>
                     </connections>
                 </viewController>
