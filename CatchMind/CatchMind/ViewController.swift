@@ -65,6 +65,7 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
+        tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0: self.performSegue(withIdentifier: "photoObjectDetection", sender: nil)
         case 1: self.performSegue(withIdentifier: "realTimeObjectDetection", sender: nil)

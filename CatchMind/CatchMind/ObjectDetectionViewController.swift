@@ -32,6 +32,8 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak var selectImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var confidenceLabel: UILabel!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     
     
     
@@ -73,6 +75,10 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
         if let editedImage = info[.editedImage] as? UIImage{
             picker.dismiss(animated: true)
             self.selectedImage = editedImage
+            self.categoryLabel.text = ""
+            self.confidenceLabel.text = ""
+            self.activityIndicatorView.startAnimating()
+            
             DispatchQueue.global(qos: .userInitiated).async {
                 self.detectObjcet()
             }
@@ -97,8 +103,12 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
     
     func handleObjectDetection(request: VNRequest, error: Error?) {
         if let result = request.results?.first as? VNClassificationObservation {
-            self.categoryLabel.text = result.identifier
-            self.confidenceLabel.text = "\(String(format: "%.1f", result.confidence*100))%"
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+                
+                self.categoryLabel.text = result.identifier
+                self.confidenceLabel.text = "\(String(format: "%.1f", result.confidence*100))%"
+            }
         }
     }
     
@@ -107,6 +117,9 @@ class ObjectDetectionViewController: UIViewController, UINavigationControllerDel
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.activityIndicatorView.hidesWhenStopped = true
+        self.activityIndicatorView.stopAnimating()
+        
         self.categoryLabel.text = ""
         self.confidenceLabel.text = ""
     }
