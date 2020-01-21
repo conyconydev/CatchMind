@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     //MARK: IBOutlet
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mainTableView: UITableView!
     
     //MARK: vlaue
     let sampleData = SampleData()
@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.mainTableView.tableFooterView = UIView(frame: .zero)
         
     }
     
@@ -45,4 +47,11 @@ extension ViewController: UITableViewDataSource {
     }
     
     
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //
+        
+    }
 }
