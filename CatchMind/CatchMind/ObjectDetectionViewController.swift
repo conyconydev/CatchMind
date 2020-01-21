@@ -11,6 +11,23 @@ import Vision
 
 class ObjectDetectionViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    //MARK: value
+    var selectedImage: UIImage? {
+        didSet {
+            self.selectImageView.image = selectedImage
+        }
+    }
+    
+    var selectedciImage: CIImage? {
+        get {
+            if let selectedImage = self.selectedImage {
+                return CIImage(image: selectedImage)
+            }else {
+                return nil
+            }
+        }
+    }
+    
     //MARK: IBOutlet
     @IBOutlet weak var selectImageView: UIImageView!
     
