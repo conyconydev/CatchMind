@@ -16,6 +16,19 @@ class ViewController: UIViewController {
     //MARK: vlaue
     let sampleData = SampleData()
     
+    //MARK: -override
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,6 +65,11 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
-        
+        switch indexPath.row {
+        case 0: self.performSegue(withIdentifier: "photoObjectDetection", sender: nil)
+        case 1: self.performSegue(withIdentifier: "realTimeObjectDetection", sender: nil)
+        case 2: self.performSegue(withIdentifier: "facialAnalysis", sender: nil)
+        default: return
+        }
     }
 }
