@@ -222,6 +222,8 @@
                     <navigationItem key="navigationItem" id="L0X-CK-mUi"/>
                     <connections>
                         <outlet property="cameraView" destination="PjA-Q2-7jL" id="6Oe-2w-quY"/>
+                        <outlet property="categoryLabel" destination="5rj-yZ-jtA" id="pUK-JE-QKf"/>
+                        <outlet property="confidenceLabel" destination="CVo-Sh-zBh" id="eEE-zk-A1o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0RF-vn-zE3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

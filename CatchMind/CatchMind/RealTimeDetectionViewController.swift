@@ -13,7 +13,8 @@ class RealTimeDetectionViewController: UIViewController {
 
     //MARK: IBOutlet
     @IBOutlet weak var cameraView: UIView!
-    
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var confidenceLabel: UILabel!
     
     //MARK: value
     var videoCapture: VideoCapture!
@@ -33,13 +34,19 @@ class RealTimeDetectionViewController: UIViewController {
     
     func handleObjcetDetection(request: VNRequest, error: Error?) {
         if let result = request.results?.first as? VNClassificationObservation {
-            print("")
+            DispatchQueue.main.async {
+                self.categoryLabel.text = result.identifier
+                self.confidenceLabel.text = "\(String(format: "$.1f", result.confidence * 100))%"
+            }
         }
     }
     
     //MARK: override
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.categoryLabel.text = ""
+        self.confidenceLabel.text = ""
 
         let spec = VideoSpec(fps: 3, size: CGSize(width: 1280, height: 720))
         self.videoCapture = VideoCapture(cameraType: .back, preferredSpec: spec , previewContainer: self.cameraView.layer)
