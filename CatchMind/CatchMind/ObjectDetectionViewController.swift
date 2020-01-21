@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Vision
 
 class ObjectDetectionViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     

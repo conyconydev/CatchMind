@@ -16,6 +16,7 @@
 		4437696E23D590C900E7D3E1 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437696D23D590C900E7D3E1 /* SampleData.swift */; };
 		44D402FF23D6C40C003ED235 /* MainFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D402FE23D6C40C003ED235 /* MainFeatureCell.swift */; };
 		44D4030223D6CEEA003ED235 /* ObjectDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D4030123D6CEEA003ED235 /* ObjectDetectionViewController.swift */; };
+		44D4030523D6EA1A003ED235 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 44D4030423D6EA1A003ED235 /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4437696D23D590C900E7D3E1 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		44D402FE23D6C40C003ED235 /* MainFeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFeatureCell.swift; sourceTree = "<group>"; };
 		44D4030123D6CEEA003ED235 /* ObjectDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectionViewController.swift; sourceTree = "<group>"; };
+		44D4030423D6EA1A003ED235 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				44D402FE23D6C40C003ED235 /* MainFeatureCell.swift */,
 				4422172823D5738800EDE1D3 /* Main.storyboard */,
 				4437696D23D590C900E7D3E1 /* SampleData.swift */,
+				44D4030323D6E9EE003ED235 /* Model */,
 				4422172623D5738800EDE1D3 /* ViewController.swift */,
 				44D4030123D6CEEA003ED235 /* ObjectDetectionViewController.swift */,
 				4422172B23D5738A00EDE1D3 /* Assets.xcassets */,
@@ -74,6 +77,14 @@
 				4422173023D5738A00EDE1D3 /* Info.plist */,
 			);
 			path = CatchMind;
+			sourceTree = "<group>";
+		};
+		44D4030323D6E9EE003ED235 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44D4030423D6EA1A003ED235 /* Inceptionv3.mlmodel */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				44D4030223D6CEEA003ED235 /* ObjectDetectionViewController.swift in Sources */,
 				4437696E23D590C900E7D3E1 /* SampleData.swift in Sources */,
 				4422172523D5738800EDE1D3 /* SceneDelegate.swift in Sources */,
+				44D4030523D6EA1A003ED235 /* Inceptionv3.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
