@@ -10,6 +10,12 @@ import UIKit
 
 class ObjectDetectionViewController: UIViewController {
 
+    //MARK: IBAction
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+        //
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
