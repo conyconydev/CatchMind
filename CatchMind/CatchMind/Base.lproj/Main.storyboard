@@ -285,7 +285,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blurredImageView" destination="Jqx-80-uvH" id="efI-0v-IpC"/>
-                        <outlet property="selectedImage" destination="2rT-Kv-mfn" id="r1a-4V-azG"/>
+                        <outlet property="selectedImageView" destination="2rT-Kv-mfn" id="r1a-4V-azG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygr-5o-GSj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

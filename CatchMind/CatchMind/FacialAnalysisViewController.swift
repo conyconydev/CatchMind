@@ -7,21 +7,33 @@
 //
 
 import UIKit
+import Vision
+import AVFoundation
 
 class FacialAnalysisViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //MARK: value
     
-    var selectdImage: UIImage? {
+    var selectedImage: UIImage? {
         didSet {
-            self.blurredImageView.image = selectdImage
-            self.selectedImage.image = selectdImage
+            self.blurredImageView.image = selectedImage
+            self.selectedImageView.image = selectedImage
+        }
+    }
+    
+    var selectedCiImage: CIImage? {
+        get {
+            if let selectedImage = self.selectedImage {
+                return CIImage(image: selectedImage)
+            }else {
+                return nil
+            }
         }
     }
     
     //MARK: IBOutlet
     @IBOutlet weak var blurredImageView: UIImageView!
-    @IBOutlet weak var selectedImage: UIImageView!
+    @IBOutlet weak var selectedImageView: UIImageView!
     
     //MARK: IBAction
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
@@ -59,9 +71,36 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
         
         if let editedImage = info[.editedImage] as? UIImage{
             picker.dismiss(animated: true)
-            self.selectdImage = editedImage
-            
+            self.selectedImage = editedImage
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.detectFaces()
+            }
         }
+    }
+    
+    func detectFaces() {
+        if let ciImage = self.selectedCiImage {
+            let detectFaceRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handlefaces)
+            let requestHandler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+
+            do {
+                try requestHandler.perform([detectFaceRequest])
+            }catch {
+                print(error)
+            }
+        }
+    }
+    
+    func handlefaces(request: VNRequest, error: Error?) {
+        if let faces = request.results as? [VNFaceObservation] {
+            DispatchQueue.main.async {
+                self.displayUI(for: faces)
+            }
+        }
+    }
+    
+    func displayUI(for faces: [VNFaceObservation]) {
+        
     }
     
     override func viewDidLoad() {
