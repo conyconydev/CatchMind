@@ -248,31 +248,42 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2rT-Kv-mfn">
-                                            <rect key="frame" x="103.5" y="103.5" width="207" height="207"/>
+                                            <rect key="frame" x="107.5" y="8" width="199" height="398"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="2rT-Kv-mfn" secondAttribute="height" id="NMd-GM-UGO"/>
+                                                <constraint firstAttribute="width" secondItem="2rT-Kv-mfn" secondAttribute="height" multiplier="0.5" id="RGv-Vf-vJW"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="centerY" secondItem="DrQ-TX-dn9" secondAttribute="centerY" id="61A-Bf-1RL"/>
-                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="centerX" secondItem="DrQ-TX-dn9" secondAttribute="centerX" id="Vqc-gx-2Pg"/>
-                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="height" secondItem="DrQ-TX-dn9" secondAttribute="width" multiplier="0.5" id="ibd-vC-ucf"/>
+                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="height" secondItem="DrQ-TX-dn9" secondAttribute="height" multiplier="0.961353" id="4CT-Zv-jEr"/>
+                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="centerY" secondItem="DrQ-TX-dn9" secondAttribute="centerY" id="SxG-ek-xcg"/>
+                                        <constraint firstItem="2rT-Kv-mfn" firstAttribute="centerX" secondItem="DrQ-TX-dn9" secondAttribute="centerX" id="Tac-7k-4la"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qpr-vy-Zyz">
+                                <rect key="frame" x="0.0" y="523" width="414" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="ZZm-Te-kUs"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Lb4-xp-XmR"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="OE2-XT-3Pj"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="VHE-tc-TVs" firstAttribute="trailing" secondItem="Jqx-80-uvH" secondAttribute="trailing" id="4Bc-qg-PL0"/>
-                            <constraint firstItem="Jqx-80-uvH" firstAttribute="top" secondItem="VHE-tc-TVs" secondAttribute="top" id="OLc-vF-5ZN"/>
-                            <constraint firstItem="Jqx-80-uvH" firstAttribute="leading" secondItem="VHE-tc-TVs" secondAttribute="leading" id="de9-U0-ITb"/>
-                            <constraint firstItem="Jqx-80-uvH" firstAttribute="height" secondItem="YLa-Xb-lod" secondAttribute="width" id="enZ-CF-WLN"/>
-                            <constraint firstItem="UP9-e1-JTw" firstAttribute="bottom" secondItem="Jqx-80-uvH" secondAttribute="bottom" id="jqK-FE-BAA"/>
-                            <constraint firstItem="UP9-e1-JTw" firstAttribute="top" secondItem="Jqx-80-uvH" secondAttribute="top" id="jy2-rh-R25"/>
-                            <constraint firstItem="UP9-e1-JTw" firstAttribute="trailing" secondItem="Jqx-80-uvH" secondAttribute="trailing" id="sLV-7n-eXe"/>
-                            <constraint firstItem="UP9-e1-JTw" firstAttribute="leading" secondItem="Jqx-80-uvH" secondAttribute="leading" id="tv6-14-W3s"/>
+                            <constraint firstItem="VHE-tc-TVs" firstAttribute="trailing" secondItem="Qpr-vy-Zyz" secondAttribute="trailing" id="76N-rr-jMW"/>
+                            <constraint firstItem="Qpr-vy-Zyz" firstAttribute="leading" secondItem="VHE-tc-TVs" secondAttribute="leading" id="8JH-U0-KHT"/>
+                            <constraint firstItem="Jqx-80-uvH" firstAttribute="leading" secondItem="VHE-tc-TVs" secondAttribute="leading" id="D9J-E1-OSj"/>
+                            <constraint firstItem="UP9-e1-JTw" firstAttribute="trailing" secondItem="Jqx-80-uvH" secondAttribute="trailing" id="FmJ-M3-D0m"/>
+                            <constraint firstItem="UP9-e1-JTw" firstAttribute="bottom" secondItem="Jqx-80-uvH" secondAttribute="bottom" id="MIU-m1-rAz"/>
+                            <constraint firstItem="UP9-e1-JTw" firstAttribute="top" secondItem="Jqx-80-uvH" secondAttribute="top" id="Uhz-i6-2YU"/>
+                            <constraint firstItem="Qpr-vy-Zyz" firstAttribute="top" secondItem="UP9-e1-JTw" secondAttribute="bottom" constant="12" id="WC9-5V-N11"/>
+                            <constraint firstItem="Jqx-80-uvH" firstAttribute="height" secondItem="YLa-Xb-lod" secondAttribute="width" id="oSV-nJ-PUG"/>
+                            <constraint firstItem="VHE-tc-TVs" firstAttribute="trailing" secondItem="Jqx-80-uvH" secondAttribute="trailing" id="pnY-ZI-OZM"/>
+                            <constraint firstItem="Jqx-80-uvH" firstAttribute="top" secondItem="VHE-tc-TVs" secondAttribute="top" id="qG0-Mx-KRV"/>
+                            <constraint firstItem="UP9-e1-JTw" firstAttribute="leading" secondItem="Jqx-80-uvH" secondAttribute="leading" id="ykC-Ov-xdg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VHE-tc-TVs"/>
                     </view>
@@ -285,6 +296,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blurredImageView" destination="Jqx-80-uvH" id="efI-0v-IpC"/>
+                        <outlet property="faceScrollView" destination="Qpr-vy-Zyz" id="bim-7X-xZ2"/>
                         <outlet property="selectedImageView" destination="2rT-Kv-mfn" id="r1a-4V-azG"/>
                     </connections>
                 </viewController>

@@ -78,14 +78,10 @@
 				4422172423D5738800EDE1D3 /* SceneDelegate.swift */,
 				44D402FE23D6C40C003ED235 /* MainFeatureCell.swift */,
 				44B1BEFB23D72F830076EDC2 /* VideoCapture */,
-				4422172823D5738800EDE1D3 /* Main.storyboard */,
-				4437696D23D590C900E7D3E1 /* SampleData.swift */,
 				44D4030323D6E9EE003ED235 /* Model */,
-				4422172623D5738800EDE1D3 /* ViewController.swift */,
-				44B1BEF723D72DBC0076EDC2 /* RealTimeDetectionViewController.swift */,
-				44B1BF0223D7402D0076EDC2 /* FacialAnalysisViewController.swift */,
-				44D4030123D6CEEA003ED235 /* ObjectDetectionViewController.swift */,
+				44B1BF0423D7E62D0076EDC2 /* Controller */,
 				4422172B23D5738A00EDE1D3 /* Assets.xcassets */,
+				4422172823D5738800EDE1D3 /* Main.storyboard */,
 				4422172D23D5738A00EDE1D3 /* LaunchScreen.storyboard */,
 				4422173023D5738A00EDE1D3 /* Info.plist */,
 			);
@@ -102,9 +98,21 @@
 			path = VideoCapture;
 			sourceTree = "<group>";
 		};
+		44B1BF0423D7E62D0076EDC2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				44B1BEF723D72DBC0076EDC2 /* RealTimeDetectionViewController.swift */,
+				4422172623D5738800EDE1D3 /* ViewController.swift */,
+				44B1BF0223D7402D0076EDC2 /* FacialAnalysisViewController.swift */,
+				44D4030123D6CEEA003ED235 /* ObjectDetectionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		44D4030323D6E9EE003ED235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4437696D23D590C900E7D3E1 /* SampleData.swift */,
 				44D4030423D6EA1A003ED235 /* Inceptionv3.mlmodel */,
 			);
 			path = Model;
