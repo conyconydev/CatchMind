@@ -72,6 +72,7 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
         if let editedImage = info[.editedImage] as? UIImage{
             picker.dismiss(animated: true)
             self.selectedImage = editedImage
+            self.removeRectangles()
             DispatchQueue.global(qos: .userInitiated).async {
                 self.detectFaces()
             }
@@ -100,7 +101,30 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
     }
     
     func displayUI(for faces: [VNFaceObservation]) {
-        
+        if let faceImage = self.selectedImage {
+            let imageRect = AVMakeRect(aspectRatio: faceImage.size, insideRect: self.selectedImageView.bounds)
+            
+            for face in faces {
+                let w = face.boundingBox.size.width * imageRect.width
+                let h = face.boundingBox.size.height * imageRect.height
+                let x = face.boundingBox.origin.x * imageRect.width
+                let y = imageRect.maxY - (face.boundingBox.origin.y * imageRect.height) - h
+                
+                let layer = CAShapeLayer()
+                layer.frame = CGRect(x: x, y: y, width: w, height:  h)
+                layer.borderColor = UIColor.red.cgColor
+                layer.borderWidth = 1
+                self.selectedImageView.layer.addSublayer(layer)
+            }
+        }
+    }
+    
+    func removeRectangles() {
+        if let sublayers = self.selectedImageView.layer.sublayers {
+            for layer in sublayers {
+                layer.removeFromSuperlayer()
+            }
+        }
     }
     
     override func viewDidLoad() {
