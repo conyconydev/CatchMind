@@ -13,6 +13,9 @@ import AVFoundation
 class FacialAnalysisViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //MARK: value
+    let emotionsDic = ["Sad" :  "슬픔" , "Fear" : "두려움", "Happy" : "기쁨" ,"Angry" : "분노" ,"Neutral" : "중립" ,"Surprise" : "놀람" ,"Disgust" : "혐오감" ]
+
+    let genderDic = ["Male" : "남성" ,"Female" : "여성" ]
     
     var selectedImage: UIImage? {
         didSet {
@@ -33,10 +36,32 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
     
     var faceImageViews = [UIImageView]()
     
+    var request = [VNRequest]()
+    
+    var selectedFace: UIImage? {
+        didSet {
+            if let selectedFace = self.selectedFace {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.performFaceAnalysis(on: selectedFace)
+                }
+            }
+        }
+    }
+    
     //MARK: IBOutlet
     @IBOutlet weak var blurredImageView: UIImageView!
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var faceScrollView: UIScrollView!
+    
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var genderIdentifierLabel: UILabel!
+    @IBOutlet weak var genderConfidenceLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var ageIdentifierLabel: UILabel!
+    @IBOutlet weak var ageConfidenceLabel: UILabel!
+    @IBOutlet weak var emotionLabel: UILabel!
+    @IBOutlet weak var emotionIdentifierLabel: UILabel!
+    @IBOutlet weak var emotionConfidenceLabel: UILabel!
     
     //MARK: IBAction
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
@@ -77,6 +102,7 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
             self.selectedImage = editedImage
             self.removeRectangles()
             self.removeFaceImageViews()
+            self.hideAllLabels()
             DispatchQueue.global(qos: .userInitiated).async {
                 self.detectFaces()
             }
@@ -94,7 +120,7 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
         if let ciImage = self.selectedCiImage {
             let detectFaceRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handlefaces)
             let requestHandler = VNImageRequestHandler(ciImage: ciImage, options: [:])
-
+            
             do {
                 try requestHandler.perform([detectFaceRequest])
             }catch {
@@ -140,11 +166,45 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
                     let faceImageView = UIImageView(frame: CGRect(x: 90*index, y: 0, width: 80, height: 80))
                     faceImageView.image = faceUiImage
                     
+                    
+                    
+                    faceImageView.isUserInteractionEnabled = true
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(FacialAnalysisViewController.handleFarceImageViewTap(_:)))
+                    faceImageView.addGestureRecognizer(tap)
+                    
                     self.faceImageViews.append(faceImageView)
                     self.faceScrollView.addSubview(faceImageView)
+                    
                 }
             }
             self.faceScrollView.contentSize = CGSize(width: 90*faces.count-10, height: 80)
+        }
+    }
+    
+    // objc
+    @objc func handleFarceImageViewTap(_ sender: UITapGestureRecognizer) {
+        if let tappedImageView = sender.view as? UIImageView {
+            for faceImageView in self.faceImageViews {
+                faceImageView.layer.borderWidth = 0
+                faceImageView.layer.borderColor = UIColor.clear.cgColor
+            }
+            
+            tappedImageView.layer.borderWidth = 3
+            tappedImageView.layer.borderColor = UIColor.blue.cgColor
+            
+            self.selectedFace = tappedImageView.image
+        }
+    }
+    
+    func performFaceAnalysis(on image: UIImage) {
+        do {
+            for request in self.request {
+                let handler = VNImageRequestHandler(cgImage: image.cgImage!, options: [:])
+                try handler.perform([request])
+            }
+        }catch {
+            print(error)
         }
     }
     
@@ -156,10 +216,106 @@ class FacialAnalysisViewController: UIViewController, UINavigationControllerDele
         }
     }
     
+    func handleGenderClassification(request: VNRequest, error: Error?) {
+        if let genderObservation = request.results?.first as? VNClassificationObservation {
+            
+            DispatchQueue.main.async {
+                self.genderIdentifierLabel.text = self.genderDic[genderObservation.identifier]
+                
+                self.genderConfidenceLabel.text = "\(String(format:"%.1f", genderObservation.confidence*100))%"
+                self.showGenderLabels()
+            }
+            print("gender: \(genderObservation.identifier), confidence: \(genderObservation.confidence)")
+            
+        }
+    }
+    
+    func handleAgeClassification(request: VNRequest, error: Error?) {
+        if let ageObservation = request.results?.first as? VNClassificationObservation {
+            DispatchQueue.main.async {
+                
+                self.ageIdentifierLabel.text = ageObservation.identifier
+                
+                self.ageConfidenceLabel.text = "\(String(format:"%.1f", ageObservation.confidence*100))%"
+                self.showAgeLabels()
+            }
+            print("age: \(ageObservation.identifier), confidence: \(ageObservation.confidence)")
+        }
+    }
+    
+    func handleEmotionClassification(request: VNRequest, error: Error?) {
+        if let EmotionObservation = request.results?.first as? VNClassificationObservation {
+            DispatchQueue.main.async {
+                
+                self.emotionIdentifierLabel.text = self.emotionsDic[EmotionObservation.identifier]
+                
+                self.emotionConfidenceLabel.text = "\(String(format:"%.1f", EmotionObservation.confidence*100))%"
+                self.showEmotionLabels()
+            }
+            print("Emotion: \(EmotionObservation.identifier), confidence: \(EmotionObservation.confidence)")
+        }
+    }
+    
+    func hideGenderLabels() {
+        self.genderLabel.isHidden = true
+        self.genderIdentifierLabel.isHidden = true
+        self.genderConfidenceLabel.isHidden = true
+    }
+    
+    func showGenderLabels() {
+        self.genderLabel.isHidden = false
+        self.genderIdentifierLabel.isHidden = false
+        self.genderConfidenceLabel.isHidden = false
+    }
+    
+    func hideAgeLabels() {
+        self.ageLabel.isHidden = true
+        self.ageIdentifierLabel.isHidden = true
+        self.ageConfidenceLabel.isHidden = true
+    }
+    
+    func showAgeLabels() {
+        self.ageLabel.isHidden = false
+        self.ageIdentifierLabel.isHidden = false
+        self.ageConfidenceLabel.isHidden = false
+    }
+    
+    func hideEmotionLabels() {
+        self.emotionLabel.isHidden = true
+        self.emotionIdentifierLabel.isHidden = true
+        self.emotionConfidenceLabel.isHidden = true
+    }
+    
+    func showEmotionLabels() {
+        self.emotionLabel.isHidden = false
+        self.emotionIdentifierLabel.isHidden = false
+        self.emotionConfidenceLabel.isHidden = false
+    }
+    
+    func hideAllLabels() {
+        self.hideGenderLabels()
+        self.hideAgeLabels()
+        self.hideEmotionLabels()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        self.hideAllLabels()
+        
+        do {
+            let genderModel = try VNCoreMLModel(for: GenderNet().model)
+            self.request.append(VNCoreMLRequest(model: genderModel, completionHandler: handleGenderClassification))
+            
+            let ageModel = try VNCoreMLModel(for: AgeNet().model)
+            self.request.append(VNCoreMLRequest(model: ageModel, completionHandler: handleAgeClassification))
+            
+            let emotionModel = try VNCoreMLModel(for: CNNEmotions().model)
+            self.request.append(VNCoreMLRequest(model: emotionModel, completionHandler: handleEmotionClassification))
+            
+        }catch {
+            print(error)
+        }
     }
     
     
