@@ -8,6 +8,7 @@
 
 import UIKit
 import Vision
+//Inceptionv3 파일크기가 커서 : 링크 추가하기.
 
 class ObjectDetectionViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
