@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     //MARK: vlaue
-    let sampleData = SampleData()
+    let sampleData = InfoData()
     
     //MARK: -override
     override func viewWillAppear(_ animated: Bool) {

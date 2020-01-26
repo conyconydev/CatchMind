@@ -13,7 +13,7 @@
 		4422172A23D5738800EDE1D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4422172823D5738800EDE1D3 /* Main.storyboard */; };
 		4422172C23D5738A00EDE1D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4422172B23D5738A00EDE1D3 /* Assets.xcassets */; };
 		4422172F23D5738A00EDE1D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4422172D23D5738A00EDE1D3 /* LaunchScreen.storyboard */; };
-		4437696E23D590C900E7D3E1 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437696D23D590C900E7D3E1 /* SampleData.swift */; };
+		4437696E23D590C900E7D3E1 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437696D23D590C900E7D3E1 /* InfoData.swift */; };
 		4445AD7223D7FE5900382B1C /* AgeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4445AD6F23D7FE5900382B1C /* AgeNet.mlmodel */; };
 		4445AD7323D7FE5900382B1C /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4445AD7023D7FE5900382B1C /* CNNEmotions.mlmodel */; };
 		4445AD7423D7FE5900382B1C /* GenderNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4445AD7123D7FE5900382B1C /* GenderNet.mlmodel */; };
@@ -36,7 +36,7 @@
 		4422172B23D5738A00EDE1D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4422172E23D5738A00EDE1D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4422173023D5738A00EDE1D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4437696D23D590C900E7D3E1 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		4437696D23D590C900E7D3E1 /* InfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoData.swift; sourceTree = "<group>"; };
 		4445AD6F23D7FE5900382B1C /* AgeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AgeNet.mlmodel; sourceTree = "<group>"; };
 		4445AD7023D7FE5900382B1C /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		4445AD7123D7FE5900382B1C /* GenderNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GenderNet.mlmodel; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		44D4030323D6E9EE003ED235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4437696D23D590C900E7D3E1 /* SampleData.swift */,
+				4437696D23D590C900E7D3E1 /* InfoData.swift */,
 				44D4030423D6EA1A003ED235 /* Inceptionv3.mlmodel */,
 				4445AD6E23D7FE5900382B1C /* MLModels */,
 			);
@@ -216,7 +216,7 @@
 				44D4030223D6CEEA003ED235 /* ObjectDetectionViewController.swift in Sources */,
 				44B1BEFF23D72F830076EDC2 /* VideoCameraType.swift in Sources */,
 				44B1BF0023D72F830076EDC2 /* VideoCapture.swift in Sources */,
-				4437696E23D590C900E7D3E1 /* SampleData.swift in Sources */,
+				4437696E23D590C900E7D3E1 /* InfoData.swift in Sources */,
 				4422172523D5738800EDE1D3 /* SceneDelegate.swift in Sources */,
 				4445AD7223D7FE5900382B1C /* AgeNet.mlmodel in Sources */,
 				4445AD7323D7FE5900382B1C /* CNNEmotions.mlmodel in Sources */,
