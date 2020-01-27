@@ -36,7 +36,7 @@ class RealTimeDetectionViewController: UIViewController {
         if let result = request.results?.first as? VNClassificationObservation {
             DispatchQueue.main.async {
                 self.categoryLabel.text = result.identifier
-                self.confidenceLabel.text = "\(String(format: "$.1f", result.confidence * 100))%"
+                self.confidenceLabel.text = "\(String(format: "%.1f", result.confidence * 100))%"
             }
         }
     }
