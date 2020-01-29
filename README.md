@@ -4,6 +4,7 @@
 ( 모델은 크기가 커서 빠져있음.) 
 - VideoCapture : VideoCameraType.swift , VideoCapture.swift , AVCaptureDevice+Extension.swift 
 ( code는 가져와서 활용함.)
+- 참고 : https://github.com/motlabs/awesome-ml-demos-with-ios
 
 ### 소개
 머신 러닝을 활용하여 간단한 앱 구현
@@ -19,8 +20,8 @@ iOS 11에 새로 추가된 Core ML과 Vision 프레임워크를 활용
 
 
 
-<img src="./img/step01.png" width="200" style="max-width:100%;">
+<img src="./img/step01.png" width="500" style="max-width:500%;">
 
 
 
-<img src="./img/step02.png" width="200" style="max-width:100%;">
+<img src="./img/step02.png" width="500" style="max-width:500%;">
